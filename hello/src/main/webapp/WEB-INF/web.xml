@@ -10,8 +10,28 @@
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value></param-value>
+		<param-value>classpath*:config/spring/context-*.xml</param-value>
 	</context-param>
+	
+	<!-- (s) encoding -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<!-- (e) encoding -->
+	
+	
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
