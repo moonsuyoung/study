@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<%@ include file = "/WEB-INF/include/include-header.jspf" %>
 </head>
 <body>
 <h2>게시판 목록</h2>
@@ -30,7 +27,7 @@
     			<c:forEach items="${list}" var="row">
     				<tr>
     					<td>${row.IDX}</td>
-    					<td>${row.TITLE}</td>
+    					<td><a href="javascript:;" onClick="goView('${row.IDX}')">${row.TITLE}</a></td>
     					<td></td>
     					<td></td>
     				</tr>
@@ -45,5 +42,16 @@
     	</c:choose>
     </tbody>
 </table>
+
+<p><a href="/sample/openBoardWrite.do">등록</a></p>
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
+<script type="text/javascript">    
+    function goView(n) {
+    	var comSubmit = new ComSubmit();
+    	console.log("idx="+n);
+    	comSubmit.setUrl("<c:url value='/sample/openBoardView.do' />?idx="+n);
+    	comSubmit.submit();
+    }
+</script>
 </body>
 </html>
